@@ -28,9 +28,14 @@ namespace AsyncDemo.WpfApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem( state =>
+            ThreadPool.QueueUserWorkItem(state =>
             {
-                Label.Content = GetLabelTextFromDb();
+                var text = GetLabelTextFromDb();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Label.Content = text;
+                });
             });
         }
 
