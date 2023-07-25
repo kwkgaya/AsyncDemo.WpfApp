@@ -28,12 +28,15 @@ namespace AsyncDemo.WpfApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Label.Content = GetLabelTextFromDb();
+            ThreadPool.QueueUserWorkItem( state =>
+            {
+                Label.Content = GetLabelTextFromDb();
+            });
         }
 
         private string GetLabelTextFromDb()
         {
-            Thread.Sleep(TimeSpan.FromSeconds(2));
+            Thread.Sleep(TimeSpan.FromSeconds(4));
 
             return "Label text at " + DateTime.Now.ToShortTimeString();
         }
