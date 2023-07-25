@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,18 @@ namespace AsyncDemo.WpfApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Label.Content = GetLabelTextFromDb();
+        }
+
+        private string GetLabelTextFromDb()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+
+            return "Label text at " + DateTime.Now.ToShortTimeString();
         }
     }
 }
