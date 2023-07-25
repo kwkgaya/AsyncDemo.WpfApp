@@ -26,22 +26,25 @@ namespace AsyncDemo.WpfApp
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(state =>
-            {
-                var text = GetLabelTextFromDb();
+            Label.Content = await GetLabelTextFromDb();
 
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    Label.Content = text;
-                });
-            });
+            //ThreadPool.QueueUserWorkItem(state =>
+            //{
+            //    var text = GetLabelTextFromDb();
+
+            //    Application.Current.Dispatcher.Invoke(() =>
+            //    {
+            //        Label.Content = text;
+            //    });
+            //});
         }
 
-        private string GetLabelTextFromDb()
+        private async Task<string> GetLabelTextFromDb()
         {
-            Thread.Sleep(TimeSpan.FromSeconds(4));
+            await Task.Delay(TimeSpan.FromSeconds(4));
+            // Thread.Sleep(TimeSpan.FromSeconds(4));
 
             return "Label text at " + DateTime.Now.ToShortTimeString();
         }
