@@ -1,0 +1,13 @@
+build/bootstrapper/upgrade-bootstrapper.ps1
+build/bootstrapper/bootstrapper.config.local
+
+TestConfig.json
+.vscode/
+client/
+*bin/
+*obj/
+*.jfrog
+*.vs
+output/
+build/TestResults
+tools/ErrorParser/all_error_logs.csv
