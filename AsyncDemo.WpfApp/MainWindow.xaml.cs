@@ -30,6 +30,7 @@ namespace AsyncDemo.WpfApp
         {
             Label.Content = await GetLabelTextFromDb();
 
+// Fixed code
             //ThreadPool.QueueUserWorkItem(state =>
             //{
             //    var text = GetLabelTextFromDb();
